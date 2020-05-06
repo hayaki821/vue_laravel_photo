@@ -1,0 +1,5 @@
+/photapp/public/*.js
+/photapp/public/*.json
+/photapp/public/css
+/photapp/public/js
+.laradock/
