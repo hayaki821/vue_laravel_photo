@@ -11,11 +11,10 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/app/main.js", "public/js")
-    .sass("resources/app/assets/scss/style.scss", "public/css")
+mix.js("resources/js/app.js", "public/js")
+    //.sass("resources/app/assets/scss/style.scss", "public/css")
     .browserSync({
         files: "public/**/*",
         proxy: "http://localhost/"
     })
-    .version()
-    .extract();
+    .version();
