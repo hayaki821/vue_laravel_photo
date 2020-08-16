@@ -28,7 +28,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
-        'web' => [
+        'web' => [//内部からしか呼ばれない上にクッキー認証を行うステートフルなものなので、ミドルウェアグループ
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -38,7 +38,8 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
-        'api' => [
+        'api' => [//ミドルウェアグループでは本来、外部のアプリケーションから呼び出されるようなステートレスな Web API
+            //セッションやクッキー、CSRF トークンを扱うミドルウェアが含まれていません。
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
