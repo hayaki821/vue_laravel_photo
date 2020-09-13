@@ -5,6 +5,7 @@ import VueRouter from "vue-router";
 import PhotoList from "./pages/PhotoList.vue";
 import Login from "./pages/Login.vue";
 import SystemError from "./pages/errors/System.vue";
+import PhotoDetail from './pages/PhotoDetail.vue'
 
 import store from "./store";
 // VueRouterプラグインを使用する
@@ -12,10 +13,14 @@ import store from "./store";
 Vue.use(VueRouter);
 
 // パスとコンポーネントのマッピング
-const routes = [
-    {
+const routes = [{
         path: "/",
         component: PhotoList
+    },
+    {
+        path: '/photos/:id',
+        component: PhotoDetail,
+        props: true //props: true はその変数部分（写真IDの値）を props として受け取る
     },
     {
         path: "/login",
