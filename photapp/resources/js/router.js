@@ -15,12 +15,21 @@ Vue.use(VueRouter);
 // パスとコンポーネントのマッピング
 const routes = [{
         path: "/",
-        component: PhotoList
+        component: PhotoList,
+        props: route => {
+            const page = route.query.page
+            return {
+                page: /^[1-9][0-9]*$/.test(page) ? page * 1 : 1
+            }
+        }
     },
     {
         path: '/photos/:id',
         component: PhotoDetail,
-        props: true //props: true はその変数部分（写真IDの値）を props として受け取る
+        //props: true //props: true はその変数部分（写真IDの値）を props として受け取る
+        props: route => ({
+            id: route.params.id,
+        })
     },
     {
         path: "/login",
@@ -35,6 +44,10 @@ const routes = [{
         }
     },
     {
+        path: '*',
+        redirect: '/'
+    },
+    {
         path: "/500",
         component: SystemError
     }
@@ -42,7 +55,14 @@ const routes = [{
 
 // VueRouterインスタンスを作成する
 const router = new VueRouter({
-    mode: "history",
+    mode: 'hash',
+    base: process.env.BASE_URL,
+    scrollBehavior() {
+        return {
+            x: 0,
+            y: 0
+        }
+    },
     routes
 });
 

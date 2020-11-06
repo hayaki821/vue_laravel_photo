@@ -11,10 +11,8 @@ class RegisterApiTest extends TestCase
 {
     use RefreshDatabase;
     /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    * @test
+    */
     public function should_user_return()
     {
         $data = [

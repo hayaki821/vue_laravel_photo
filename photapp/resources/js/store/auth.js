@@ -1,4 +1,8 @@
-import { OK, UNPROCESSABLE_ENTITY, CREATED } from "../util";
+import {
+    OK,
+    UNPROCESSABLE_ENTITY,
+    CREATED
+} from "../util";
 
 const state = {
     user: null,
@@ -32,7 +36,7 @@ const actions = {
     async register(context, data) {
         context.commit("setApiStatus", null);
         const response = await axios.post("/api/register", data);
-
+        console.log(response);
         if (response.status === CREATED) {
             context.commit("setApiStatus", true);
             context.commit("setUser", response.data);
@@ -43,7 +47,9 @@ const actions = {
         if (response.status === UNPROCESSABLE_ENTITY) {
             context.commit("setRegisterErrorMessages", response.data.errors);
         } else {
-            context.commit("error/setCode", response.status, { root: true });
+            context.commit("error/setCode", response.status, {
+                root: true
+            });
         }
     },
     async login(context, data) {
@@ -65,7 +71,9 @@ const actions = {
             context.commit("setLoginErrorMessages", response.data.errors);
         } else {
             //あるストアモジュールから別のモジュールのミューテーションを commit する場合は第三引数に { root: true } を追加
-            context.commit("error/setCode", response.status, { root: true });
+            context.commit("error/setCode", response.status, {
+                root: true
+            });
         }
     },
     async logout(context) {
@@ -78,7 +86,9 @@ const actions = {
             return false;
         }
         context.commit("setApiStatus", false);
-        context.commit("error/setCode", response.status, { root: true });
+        context.commit("error/setCode", response.status, {
+            root: true
+        });
     },
     // ログインユーザーチェック
     async currentUser(context) {
@@ -92,7 +102,9 @@ const actions = {
             return false;
         }
         context.commit("setApiStatus", false);
-        context.commit("error/setCode", response.status, { root: true });
+        context.commit("error/setCode", response.status, {
+            root: true
+        });
     }
 };
 

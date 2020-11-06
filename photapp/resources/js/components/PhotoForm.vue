@@ -14,6 +14,7 @@
         <output class="form__output" v-if="preview">
             <img :src="preview" alt />
         </output>
+
         <div class="form__button">
             <button type="submit" class="button button--inverse">submit</button>
         </div>

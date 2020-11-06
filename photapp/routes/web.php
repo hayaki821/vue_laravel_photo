@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 //     view('index')->where('any', '.+');
 // });
 
+// 写真ダウンロード
+Route::get('/photos/{photo}/download', 'PhotoController@download');
+
+
 Route::get('/', function () {
     return view('index');
 });

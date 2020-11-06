@@ -19,9 +19,7 @@ class LoginApiTest extends TestCase
         $this->user = factory(User::class)->create();
     }
     /**
-     * A basic feature test example.
-     *
-     * @return void
+     * @test
      */
     public function testExample()
     {
@@ -32,7 +30,7 @@ class LoginApiTest extends TestCase
     /**
      * @test
      */
-    public function should_user_return()
+    public function should_登録済みのユーザーを認証して返却する()
     {
         $response = $this->json('POST', route('login'), [
             'email' => $this->user->email,
@@ -45,4 +43,5 @@ class LoginApiTest extends TestCase
 
         $this->assertAuthenticatedAs($this->user);
     }
+
 }

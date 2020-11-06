@@ -10,18 +10,6 @@ use Tests\TestCase;
 class UserApiTest extends TestCase
 {
     use RefreshDatabase;
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    //前処理
-    public function testExample()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-    }
 
     public function setUp(): void
     {
@@ -34,7 +22,7 @@ class UserApiTest extends TestCase
      * @test
      */
     //ログイン中のユーザーを返却する
-    public function should_user_return()
+    public function should_ログイン中のユーザーを返却する()
     {
         $response = $this->actingAs($this->user)->json('GET', route('user'));
 

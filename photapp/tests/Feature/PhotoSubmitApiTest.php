@@ -10,16 +10,15 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Schema;//db
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
+use Tests\Feature\Storege;
 
 class PhotoSubmitApiTest extends TestCase
 {
 
     use RefreshDatabase;
     /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    * @test
+    */
     public function setUp(): void
     {
         parent::setUp();
@@ -87,7 +86,7 @@ class PhotoSubmitApiTest extends TestCase
     public function should_ファイル保存エラーの場合はDBへの挿入はしない()
     {
         // ストレージをモックして保存時にエラーを起こさせる
-        Storege::shouldReceive('cloud')
+        Storage::shouldReceive('cloud')
             ->once()
             ->andReturnNull();
 
